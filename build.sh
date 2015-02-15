@@ -16,17 +16,21 @@ SELECTED_IDENTITY=$(echo "$SELECTED_CERT" | awk '{ print $2; }')
 SELECTED_PREFIX=$(echo "$SELECTED_CERT" | awk -F'[()]' '{print $3}')
 echo "> codesign: $SELECTED_IDENTITY ($SELECTED_PREFIX)"
 
+[ ! -d ./tmp ] && {
+    mkdir tmp;
+}
+
 echo ""
-if [[ ! -d ./Twitter.app ]]; then
-    echo "Check new version of Twitter.app with Shadowsocks..."
-    APP_VER=$(curl -s http://fir.im/api/v2/app/version/54dad1f5f6c9fcb66100007d | \
-        cut -d, -f2 | sed "s/\"//g" | cut -d: -f2)
-    echo "> detect Twitter.app version: $APP_VER"
+echo "Check new version of Twitter.app with Shadowsocks..."
+APP_VER=$(curl -s http://fir.im/api/v2/app/version/54dad1f5f6c9fcb66100007d | \
+    cut -d, -f2 | sed "s/\"//g" | cut -d: -f2)
+echo "> detect Twitter.app version: $APP_VER"
+if [[ ! -f ./tmp/Twitter-$APP_VER.ipa ]]; then
     IPA_URL=http://wsvn.qiniudn.com/Twitter-$APP_VER.ipa
     echo "> downloading $IPA_URL.."
     rm -rf Payload __MACOSX
-    curl -o Twitter-$APP_VER.ipa $IPA_URL
-    unzip Twitter-$APP_VER.ipa
+    curl -o ./tmp/Twitter-$APP_VER.ipa $IPA_URL
+    unzip ./tmp/Twitter-$APP_VER.ipa
     mv Payload/Twitter.app ./
     rm -rf Payload __MACOSX
     echo ""
@@ -40,4 +44,5 @@ sed "s/__PREFIX__/$SELECTED_PREFIX/g" Tweetie2.app.xcent.tmpl > Tweetie2.app.xce
     /usr/bin/codesign --verify --force --sign $SELECTED_IDENTITY Twitter.app/TwitterShadowsocks.framework;
 }
 /usr/bin/codesign --verify --force --sign $SELECTED_IDENTITY --entitlements ./Tweetie2.app.xcent Twitter.app
-xcrun -sdk iphoneos PackageApplication -v Twitter.app -o $$PWD/Twitter.ipa
+
+xcrun -sdk iphoneos PackageApplication -v Twitter.app -o $PWD/Twitter.ipa
