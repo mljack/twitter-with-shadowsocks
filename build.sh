@@ -32,6 +32,7 @@ if [[ ! -f ./tmp/Twitter-$APP_VER.ipa ]]; then
     curl -o ./tmp/Twitter-$APP_VER.ipa $IPA_URL
     unzip ./tmp/Twitter-$APP_VER.ipa
     mv Payload/Twitter.app ./
+    rm Twitter.app/embedded.mobileprovision
     rm -rf Payload __MACOSX
     echo ""
 fi
