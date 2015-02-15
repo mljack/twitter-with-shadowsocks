@@ -42,7 +42,7 @@ git clone https://github.com/wsvn53/twitter-with-shadowsocks.git
   Packaging application: 'Twitter.app'
   
   Done checking the original app
-  + /usr/bin/zip --symlinks --verbose --recurse-paths /Users/Ethan/Dropbox/Code/Projects/twiter-with-shadowsocks/Twitter.ipa .
+  + /usr/bin/zip --symlinks --verbose --recurse-paths ../twiter-with-shadowsocks/Twitter.ipa .
 ````
 
 Ok，打包完成后，在本目录下 Twitter.ipa 就是使用自有证书签名的版本；
