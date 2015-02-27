@@ -1,12 +1,24 @@
 # Twitter with Shadowsocks
 
 > 这是将 Twitter iOS 官方客户端集成 Shadowsocks 之后的版本，这个仓库提供的是自签名打包脚本，便于开发者使用自有证书签名后安装到未越狱 iOS 设备上；  
-> 未越狱设备可以直接安装 http://fir.im/w3dk
+> 已越狱设备可以直接安装 http://fir.im/w3dk  (或者把UDID发给作者)
 
 ## 使用前请注意
 
 1. 重签名后导致部分 keychain 无法正常读写，目前简单的解决方案是在输入密码时在新的 keychain item 中记录您的密码，这样可以便于在进程杀死后不用再次输入密码验证，如对此有顾虑请慎用；  
 * 这不是官方授权版本，仅供大家学习研究使用，请勿用于其他破坏性目的；
+
+2. 如果安装时提示`The application could not be verified.`，则需要把原来的Twitter官方客户端删除掉。
+
+
+## 开发者证书申请
+
+1. 在Apple Developer Center里，申请一个APP ID为`*`，注意把`iCloud`勾上，否则会报`The entitlements specified in your application’s Code Signing Entitlements file do not match those specified in your provisioning profile. (0xE8008016). `的错误。
+
+2. 签署一个Adhoc的Distribution证书，下载回来之后，先双击之后安装在手机上
+
+2.1 在`Xcode->Window->Devices`里，点左下角的齿轮，可以查看已经安装在手机上的Provisioning Profiles。
+
 
 ## 使用方法
 
