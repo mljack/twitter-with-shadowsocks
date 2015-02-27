@@ -1,3 +1,6 @@
 Tweetie2.app.xcent
 *.ipa
 *.app
+build
+xcuserdata
+xcshareddata

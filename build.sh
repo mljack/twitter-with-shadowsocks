@@ -1,5 +1,6 @@
 #!/bin/bash
 FIR_APPID=54dad1f5f6c9fcb66100007d
+IPA_OTA="https://fir.im/api/v2/app/ins…ll/54dad1f5f6c9fcb66100007d?token=5e284e00aeb911e4a2baf9204bfdfae04abeb6af"
 SELECTED=1
 
 # 选择证书

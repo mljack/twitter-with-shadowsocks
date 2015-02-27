@@ -1,0 +1,6 @@
+[submodule "twitter-fake/sskeychain"]
+	path = twitter-fake/sskeychain
+	url = https://github.com/soffes/sskeychain.git
+[submodule "twitter-fake/fishhook"]
+	path = twitter-fake/fishhook
+	url = https://github.com/facebook/fishhook.git
